@@ -14,7 +14,6 @@ const User = new Schema({
         required: true,
         trim: true,
         lowercase: true,
-        unique: true,
     },
     isMember: {
         type: Boolean,

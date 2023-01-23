@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
 
 // AUTHENTIFICATION CONTROLLERS
 router.get('/sign-up', auth_controller.sign_up_get);
+router.post('/sign-up', auth_controller.sign_up_post);
 
 router.get('/log-in', auth_controller.log_in_get)
 

@@ -6,11 +6,14 @@ block content
     form(method='POST' action='')
         .form-group 
             label(for='name')
-            input.form-control(type='text', required=true, placeholder='your name')
+            input.form-control(name='name' type='text', required=true, placeholder='your name')
         .form-group         
             label(for='email')
-            input.form-control(type='email', required=true, placeholder='your email')
+            input.form-control(name='email' type='email', required=true, placeholder='your email')
         .form-group 
-            label(for='email')
-            input.form-control(type='password', required=true)
+            label(for='password') Password
+            input.form-control(type='password', required=true, name='password')
+        .form-group 
+            label(for='passwordConfirmation') Password confirmation
+            input.form-control(name='passwordConfirmation' type='password', required=true)
         button.btn.btn-primary(type='submit') Sign up

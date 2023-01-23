@@ -19,7 +19,11 @@ main().catch(err => console.log(err));
 async function main() {
   await mongoose.connect(process.env.DATABASE_URL)
 }
-
+async function dblook() {
+  const db = await User.find();
+  console.log(db)
+}
+dblook()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
