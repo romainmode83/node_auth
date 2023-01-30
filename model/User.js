@@ -23,7 +23,8 @@ const User = new Schema({
     isAdmin: {
         type: Boolean,
         default: false,
-    }
+    },
+    password: String
 })
 
 

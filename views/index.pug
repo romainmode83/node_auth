@@ -2,4 +2,28 @@ extends layout
 
 block content
   h1= title
+  h3 
+    a(href='/new-message') Write a message
   p Welcome to #{title}
+
+
+  if user 
+    p 
+      a(href='/new-message') Write a new message
+    p
+      a(href='/log-out') Log-out
+  else 
+    p
+      a(href='/log-in') Log-in 
+    
+  if !messages
+    p No messages yet...
+  else 
+    h2 Messages :
+    hr
+    each message in messages
+      h3 #{message.title}
+      p #{message.content}
+      if user
+        p From - #{message.author.name}
+      hr

@@ -1,0 +1,19 @@
+extends layout 
+
+block content 
+    h1 #{title}
+    p #{user}
+
+    form(method='POST' action='')
+        .form-group
+            label(for='title') Title: 
+            input#title.form-control(name='title', type='text', placeholder='Message title')
+        .form-group
+            label(for='content') Content:
+            textarea#content.form-control(name="content", cols="30", rows="10", placeholder='your text') 
+        button.btn.btn-primary(type='submit') Submit message
+
+    if errors 
+        ul
+            for error in errors 
+                li #{error.msg}

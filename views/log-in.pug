@@ -2,12 +2,16 @@ extends layout
 
 block content 
     h1 Please log-in
+    if messages.error
+        p #{messages.error}
 
-    form(method='POST' action='')
+    form.pb-3(method='POST' action='')
         .form-group         
-            label(for='email')
-            input.form-control(type='email', required=true, placeholder='your email')
+            label(for='email') Email
+            input.form-control(name='email' type='email', required=true, placeholder='your email')
         .form-group 
-            label(for='email')
-            input.form-control(type='password', required=true)
+            label(for='password') Password
+            input.form-control(name='password' type='password', required=true)
         button.btn.btn-primary(type='submit') Sign up
+    p 
+        a(href='sign-up') No account yet? Please sign-up

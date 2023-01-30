@@ -15,7 +15,7 @@ const Message = new Schema({
     },
     date: {
         type: Date,
-        default: () => Date.now
+        default: () => Date.now()
     },
     content: {
         type: String,
@@ -23,4 +23,4 @@ const Message = new Schema({
     }
 })
 
-module.exports = Schema.model('Message', Message);
+module.exports = mongoose.model('Message', Message);

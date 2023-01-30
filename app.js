@@ -4,8 +4,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
-require('dotenv').config();
 const User = require('./model/User')
+const Message = require('./model/Message')
+const session = require('express-session');
+const passport = require('passport')
+const flash = require('express-flash')
+require('./config/passport');
+
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 
 var routes = require('./routes/routes');
@@ -19,15 +28,34 @@ main().catch(err => console.log(err));
 async function main() {
   await mongoose.connect(process.env.DATABASE_URL)
 }
+/* tb deleted : shows user DB content
 async function dblook() {
   const db = await User.find();
-  console.log(db)
+  console.log('USERS DB =' + db)
 }
 dblook()
+async function msglook() {
+  const msgdb = await Message.find();
+  console.log('MESSAGE DB =' + msgdb)
+}
+msglook()*/ 
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+app.use(flash())
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}))
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -36,7 +64,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
